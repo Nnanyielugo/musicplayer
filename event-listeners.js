@@ -36,7 +36,7 @@ function stop() {
   stopBtn.setAttribute('disabled', true);
 }
 
-function input() {
+function seek() {
   audioElem.currentTime = this.value;
   play.call(playBtn, true)
 }

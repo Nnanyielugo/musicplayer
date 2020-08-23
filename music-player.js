@@ -66,4 +66,4 @@ prevBtn.addEventListener('click', previous);
 
 stopBtn.addEventListener('click', stop);
 
-progress.addEventListener('input', input)
+progress.addEventListener('input', seek)
