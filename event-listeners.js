@@ -10,6 +10,7 @@ function next() {
     document.getElementById('next').disabled = true;
   }
   trackNumber.textContent = `${trackn + 1}/${filesUrl.length}`;
+  trackTitle.textContent = filesUrl[trackn].trackName;
 }
 
 function previous() {
@@ -26,6 +27,7 @@ function previous() {
     document.getElementById('next').disabled = false;
   }
   trackNumber.textContent = `${trackn + 1}/${filesUrl.length}`;
+  trackTitle.textContent = filesUrl[trackn].trackName;
 }
 
 function stop() {

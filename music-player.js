@@ -13,12 +13,14 @@ const timer = document.createElement('h6');
 const progress = document.createElement('input');
 const timerContainer = document.createElement('div');
 const trackNumber = document.createElement('h6');
+const trackTitle = document.createElement('h6');
+const trackTitleContainer = document.createElement('div');
 
-trackNumber.style.fontSize = '12px';
-trackNumber.style.fontStyle = 'italic';
-trackNumber.style.fontFamily = "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif"
+trackNumber.className = 'track-number';
 timerContainer.className = 'timer-container';
-timerContainer.append(timer)
+trackTitleContainer.className = 'track-title-container';
+trackTitleContainer.append(trackTitle);
+timerContainer.append(timer);
 timerContainer.append(trackNumber);
 
 progress.type = 'range';
@@ -34,8 +36,8 @@ progressContainer.style.marginBottom = '10px';
 
 progressContainer.append(progress);
 body.prepend(progressContainer);
+body.append(trackTitleContainer);
 body.append(timerContainer);
-
 
 stopBtn.setAttribute('disabled', true);
 
@@ -45,6 +47,7 @@ if (trackn === 0) {
 }
 
 trackNumber.textContent = `${trackn + 1}/${filesUrl.length}`;
+trackTitle.textContent = filesUrl[trackn].trackName;
 
 audioElem.src = filesUrl[trackn].url;
 

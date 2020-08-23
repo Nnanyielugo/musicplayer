@@ -51,6 +51,17 @@ button {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+.track-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -10px 0 -40px 0;
+}
+
+.track-title-container > h6 {
+  color: grey;
+}
+
 .timer {
   font-style: italic;
   font-size: 12px;
