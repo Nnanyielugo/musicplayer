@@ -1,11 +1,13 @@
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const context = new AudioContext();
+
 const audioElem = document.querySelector('audio');
 const playBtn = document.querySelector('.play-pause');
 const prevBtn = document.querySelector('#previous');
 const nextBtn = document.querySelector('#next');
 const stopBtn = document.querySelector('#stop');
 const body = document.querySelector('body');
+
 const progressContainer = document.createElement('div');
 const timer = document.createElement('h6');
 const progress = document.createElement('input');
