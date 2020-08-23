@@ -29,12 +29,37 @@ button {
   color: black;
 }
 
+.progress-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-bottom: -30px; */
+  margin-top: -10px;
+}
+
 .timer-container {
   display: flex;
   align-items: center;
   justify-content: center;
   /* margin-bottom: -30px; */
   margin-top: -10px;
+}
+
+.track-number {
+  font-size: 12px;
+  font-style: italic;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.track-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -10px 0 -40px 0;
+}
+
+.track-title-container > h6 {
+  color: grey;
 }
 
 .timer {
