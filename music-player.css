@@ -45,6 +45,12 @@ button {
   margin-top: -10px;
 }
 
+.track-number {
+  font-size: 12px;
+  font-style: italic;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 .timer {
   font-style: italic;
   font-size: 12px;
