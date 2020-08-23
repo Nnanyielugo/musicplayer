@@ -11,15 +11,15 @@ const body = document.querySelector('body');
 const progressContainer = document.createElement('div');
 const timer = document.createElement('h6');
 const progress = document.createElement('input');
-const trackContainer = document.createElement('div');
+const timerContainer = document.createElement('div');
 const trackNumber = document.createElement('h6');
 
 trackNumber.style.fontSize = '12px';
 trackNumber.style.fontStyle = 'italic';
 trackNumber.style.fontFamily = "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif"
-trackContainer.className = 'timer-container';
-trackContainer.append(timer)
-trackContainer.append(trackNumber);
+timerContainer.className = 'timer-container';
+timerContainer.append(timer)
+timerContainer.append(trackNumber);
 
 progress.type = 'range';
 progress.step = 1;
@@ -34,7 +34,7 @@ progressContainer.style.marginBottom = '10px';
 
 progressContainer.append(progress);
 body.prepend(progressContainer);
-body.append(trackContainer);
+body.append(timerContainer);
 
 
 stopBtn.setAttribute('disabled', true);
