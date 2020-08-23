@@ -7,7 +7,7 @@ function gotoStart() {
   document.getElementById('previous').disabled = true;
   document.getElementById('next').disabled = (trackn === filesUrl.length - 1);
   audioElem.src = filesUrl[trackn].url;
-  play.apply(playBtn)
+  play.call(playBtn)
   trackNumber.textContent = `${trackn + 1}/${filesUrl.length}`;
 }
 

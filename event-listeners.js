@@ -2,7 +2,7 @@ function next() {
   timer.textContent = '00:00/00:00';
   trackn ++;
   audioElem.src = filesUrl[trackn].url;
-  play.apply(playBtn)
+  play.call(playBtn)
   document.getElementById('previous').disabled = false;
   document.getElementById('stop').disabled = false;
   if (trackn === filesUrl.length - 1) {
@@ -16,7 +16,7 @@ function previous() {
   timer.textContent = '00:00/00:00';
   trackn --;
   audioElem.src = filesUrl[trackn].url;
-  play.apply(playBtn)
+  play.call(playBtn)
   document.getElementById('stop').disabled = false;
   if (trackn === 0) {
     document.getElementById('previous').disabled = true;
@@ -38,19 +38,19 @@ function stop() {
 
 function input() {
   audioElem.currentTime = this.value;
+  play.call(playBtn, true)
 }
 
-function play() {
-  let playId = this.getAttribute('id');
+function play(seek) {
   if (context.state === 'suspended') {
     context.resume();
   }
 
-  if (audioElem.paused) {
+  if (audioElem.paused || (!audioElem.paused && typeof seek === 'boolean')) {
     audioElem.play();
     this.setAttribute('id', 'playing');
     this.textContent = 'Pause';    
-  } else if (playId === 'playing') {
+  } else {
     audioElem.pause();
     context.suspend()
     this.setAttribute('id', 'paused');
