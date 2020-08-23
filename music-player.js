@@ -1,3 +1,6 @@
+// require utils
+// const {} = require('./utils');
+
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const context = new AudioContext();
 const audioElem = document.querySelector('audio');
@@ -47,52 +50,6 @@ function getMinutes(currentTime) {
   return `${padZero(minutes)}:${padZero(seconds)}`
 }
 
-
-const filesUrl = [
-  {
-    url: './Mumford/01.mp3',
-  },
-  {
-    url: './Mumford/02.mp3'
-  },
-  {
-    url: './Mumford/03.mp3',
-  },
-  {
-    url: './Mumford/04.mp3'
-  },
-  {
-    url: './Mumford/05.mp3',
-  },
-  {
-    url: './Mumford/06.mp3'
-  },
-  {
-    url: './Mumford/07.mp3',
-  },
-  {
-    url: './Mumford/08.mp3'
-  },
-  {
-    url: './Mumford/09.mp3',
-  },
-  {
-    url: './Mumford/10.mp3'
-  },
-  {
-    url: './Mumford/11.mp3',
-  },
-  {
-    url: './Mumford/12.mp3'
-  },
-  {
-    url: './Mumford/13.mp3',
-  },
-  {
-    url: './Mumford/14.mp3'
-  }
-];
-
 let trackn = 0;
 if (trackn === 0) {
   document.getElementById('previous').disabled = true;
@@ -101,14 +58,6 @@ if (trackn === 0) {
 trackNumber.textContent = `${trackn + 1}/${filesUrl.length}`;
 
 audioElem.src = filesUrl[trackn].url;
-
-function gotoStart() {
-  trackn = 0;
-  document.getElementById('previous').disabled = true;
-  audioElem.src = filesUrl[trackn].url;
-  audioElem.play();
-  trackNumber.textContent = `${trackn + 1}/${filesUrl.length}`;
-}
 
 /** Event Listeners */
 audioElem.addEventListener('loadedmetadata', function() {
@@ -159,19 +108,6 @@ playBtn.addEventListener('click', function() {
 });
 
 nextBtn.addEventListener('click', next);
-function next () {
-  timer.textContent = '00:00/00:00';
-  trackn ++;
-  audioElem.src = filesUrl[trackn].url;
-  audioElem.play();
-  audioElem.textContent = "Pause";
-  document.getElementById('previous').disabled = false;
-  document.getElementById('stop').disabled = false;
-  if (trackn === filesUrl.length - 1) {
-    document.getElementById('next').disabled = true;
-  }
-  trackNumber.textContent = `${trackn + 1}/${filesUrl.length}`;
-}
 
 prevBtn.addEventListener('click', function() {
   timer.textContent = '00:00/00:00';
