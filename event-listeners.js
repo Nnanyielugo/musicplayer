@@ -2,8 +2,7 @@ function next() {
   timer.textContent = '00:00/00:00';
   trackn ++;
   audioElem.src = filesUrl[trackn].url;
-  audioElem.play();
-  audioElem.textContent = "Pause";
+  play.apply(playBtn)
   document.getElementById('previous').disabled = false;
   document.getElementById('stop').disabled = false;
   if (trackn === filesUrl.length - 1) {
@@ -17,8 +16,7 @@ function previous() {
   timer.textContent = '00:00/00:00';
   trackn --;
   audioElem.src = filesUrl[trackn].url;
-  audioElem.play();
-  audioElem.textContent = "Pause";
+  play.apply(playBtn)
   document.getElementById('stop').disabled = false;
   if (trackn === 0) {
     document.getElementById('previous').disabled = true;
@@ -43,18 +41,18 @@ function input() {
 }
 
 function play() {
-  
   let playId = this.getAttribute('id');
   if (context.state === 'suspended') {
     context.resume();
   }
 
-  if (playId === 'paused') {
+  if (audioElem.paused) {
     audioElem.play();
     this.setAttribute('id', 'playing');
     this.textContent = 'Pause';    
   } else if (playId === 'playing') {
     audioElem.pause();
+    context.suspend()
     this.setAttribute('id', 'paused');
     this.textContent = 'Play';
   }
@@ -72,12 +70,10 @@ function timeupdate() {
 function trackended() {
   if (trackn === filesUrl.length - 1) {
     document.getElementById('next').disabled = true;
+    return gotoStart();
   } else {
     document.getElementById('next').disabled = false;
   }
-  if (trackn === filesUrl.length - 1) {
-    return gotoStart();
-  };
   next()
 }
 
