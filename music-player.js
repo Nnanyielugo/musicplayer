@@ -1,6 +1,3 @@
-// require utils
-// const {} = require('./utils');
-
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const context = new AudioContext();
 const audioElem = document.querySelector('audio');
@@ -40,16 +37,6 @@ body.append(trackContainer);
 
 stopBtn.setAttribute('disabled', true);
 
-function padZero (time) {
-  return time < 10 ? '0' + time : '' + time;
-}
-
-function getMinutes(currentTime) {
-  const minutes = Math.floor(currentTime/60)
-  const seconds = Math.floor(currentTime % 60)
-  return `${padZero(minutes)}:${padZero(seconds)}`
-}
-
 let trackn = 0;
 if (trackn === 0) {
   document.getElementById('previous').disabled = true;
@@ -60,79 +47,18 @@ trackNumber.textContent = `${trackn + 1}/${filesUrl.length}`;
 audioElem.src = filesUrl[trackn].url;
 
 /** Event Listeners */
-audioElem.addEventListener('loadedmetadata', function() {
-  const valP = (progress.value/this.duration * 100).toFixed();
-  timer.textContent = `${getMinutes(audioElem.currentTime)}/${getMinutes(audioElem.duration)}`;
-  progress.max = audioElem.duration;
-  progress.value = audioElem.currentTime;
-  progress.style.background = `linear-gradient(to right, green, #a3bbbb ${valP}%, white)`;
-});
+audioElem.addEventListener('loadedmetadata', loadmetadata);
 
-audioElem.addEventListener('ended', function() {
-  if (trackn === filesUrl.length - 1) {
-    document.getElementById('next').disabled = true;
-  } else {
-    document.getElementById('next').disabled = false;
-  }
-  if (trackn === filesUrl.length - 1) {
-    return gotoStart();
-  };
-  next()
-});
+audioElem.addEventListener('ended', trackended);
 
-audioElem.addEventListener('timeupdate', function() {
-  const valP = (progress.value/this.duration * 100).toFixed();
-  timer.textContent = `${getMinutes(audioElem.currentTime)}/${audioElem.duration ? getMinutes(audioElem.duration) : '00:00'}`;
-  progress.value = audioElem.currentTime;
-  progress.style.background = `linear-gradient(to right, green, #a3bbbb ${valP}%, white)`;
-})
+audioElem.addEventListener('timeupdate', timeupdate)
 
-playBtn.addEventListener('click', function() {
-  
-  let playId = this.getAttribute('id');
-  if (context.state === 'suspended') {
-    context.resume();
-  }
-
-  if (playId === 'paused') {
-    audioElem.play();
-    this.setAttribute('id', 'playing');
-    this.textContent = 'Pause';    
-  } else if (playId === 'playing') {
-    audioElem.pause();
-    this.setAttribute('id', 'paused');
-    this.textContent = 'Play';
-  }
-
-  document.getElementById('stop').disabled = false;
-});
+playBtn.addEventListener('click', play);
 
 nextBtn.addEventListener('click', next);
 
-prevBtn.addEventListener('click', function() {
-  timer.textContent = '00:00/00:00';
-  trackn --;
-  audioElem.src = filesUrl[trackn].url;
-  audioElem.play();
-  audioElem.textContent = "Pause";
-  document.getElementById('stop').disabled = false;
-  if (trackn === 0) {
-    document.getElementById('previous').disabled = true;
-  }
-  if (trackn < filesUrl.length - 1) {
-    document.getElementById('next').disabled = false;
-  }
-  trackNumber.textContent = `${trackn + 1}/${filesUrl.length}`;
-});
+prevBtn.addEventListener('click', previous);
 
-stopBtn.addEventListener('click', function () {
-  audioElem.pause();
-  audioElem.currentTime = 0.0;
-  playBtn.setAttribute('id', 'paused');
-  playBtn.textContent = 'Play';
-  stopBtn.setAttribute('disabled', true);
-});
+stopBtn.addEventListener('click', stop);
 
-progress.addEventListener('input', function() {
-  audioElem.currentTime = this.value;
-})
+progress.addEventListener('input', input)
