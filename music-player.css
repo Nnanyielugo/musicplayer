@@ -29,6 +29,14 @@ button {
   color: black;
 }
 
+.progress-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-bottom: -30px; */
+  margin-top: -10px;
+}
+
 .timer-container {
   display: flex;
   align-items: center;

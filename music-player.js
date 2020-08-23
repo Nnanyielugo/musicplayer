@@ -28,7 +28,7 @@ progress.value = 0;
 
 timer.className = 'timer';
 timer.textContent = '00:00/00:00';
-progressContainer.className = 'timer-container';
+progressContainer.className = 'progress-container';
 progressContainer.style.marginTop = '200px';
 progressContainer.style.marginBottom = '10px';
 
